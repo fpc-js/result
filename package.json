@@ -1,7 +1,7 @@
 {
   "name": "@fpc/result",
   "description": "Result type for modern javascript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Emiliano Bovetti <emiliano.bovetti@gmail.com>",
   "license": "GPL-3.0",
   "keywords": [
@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": {
-    "@fpc/types": "^0.0.3"
+    "@fpc/types": "^0.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
