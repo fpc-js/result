@@ -84,6 +84,12 @@ test('Err(1).merge(x => x + 1, y => y + 2) = 3', () =>
   expect(err1.merge(x => x + 1, y => y + 2)).toBe(3)
 );
 
+test('results respect array interface', () => {
+  expect(err1.length).toBe(2);
+  expect(err1[0]).toBe(undefined);
+  expect(err1[1]).toBe(1);
+});
+
 test('const [ok, err] = err1; gives [undefined, 1]', () => {
   const [ok, err] = err1;
 

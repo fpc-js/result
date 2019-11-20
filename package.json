@@ -1,7 +1,7 @@
 {
   "name": "@fpc/result",
   "description": "Result type for modern javascript",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": "Emiliano Bovetti <emiliano.bovetti@gmail.com>",
   "license": "GPL-3.0",
   "keywords": [

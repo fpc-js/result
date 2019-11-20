@@ -76,6 +76,12 @@ test('Ok(0).merge(x => x + 1, y => y + 2) = 1', () =>
   expect(ok0.merge(x => x + 1, y => y + 2)).toBe(1)
 );
 
+test('results respect array interface', () => {
+  expect(ok0.length).toBe(2);
+  expect(ok0[0]).toBe(0);
+  expect(ok0[1]).toBe(undefined);
+});
+
 test('const [ok, err] = ok0; gives [0, undefined]', () => {
   const [ok, err] = ok0;
 

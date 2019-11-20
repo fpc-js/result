@@ -13,6 +13,8 @@ function Ctor (props) {
 }
 
 Ctor.prototype = {
+  length: 2,
+
   map (fn) {
     return this.isErr ? this : Result(fn, this.get());
   },
@@ -66,6 +68,7 @@ Result.prototype = Ctor.prototype;
 
 export function Ok (val) {
   if (this instanceof Ok) {
+    this[0] = val;
     this.get = () => val;
   } else {
     return new Ok(val);
@@ -82,6 +85,7 @@ Ok.prototype = new Ctor({
 
 export function Err (val) {
   if (this instanceof Err) {
+    this[1] = val;
     this.getErr = () => val;
   } else {
     return new Err(val);
