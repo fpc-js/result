@@ -1,4 +1,4 @@
-import { isFunction, isPromise, typeOf } from '@fpc/types';
+import { expectFunction } from '@fpc/types';
 
 /* global Symbol */
 /* eslint-disable func-style, no-use-before-define, no-sequences */
@@ -48,21 +48,19 @@ Ctor.prototype = {
   },
 };
 
-export const Result = (src, ...args) => {
-  if (isFunction(src)) {
-    try {
-      const ret = src(...args);
+export const Result = (fn, ...args) => {
+  expectFunction(fn);
 
-      return ret instanceof Result ? ret : new Ok(ret);
-    } catch (e) {
-      return e instanceof Err ? e : new Err(e);
-    }
-  } else if (isPromise(src)) {
-    return src.then(Ok, Err);
-  } else {
-    throw new TypeError(`Expected function or promise, got ${typeOf(src)}`);
+  try {
+    const ret = fn(...args);
+
+    return ret instanceof Result ? ret : new Ok(ret);
+  } catch (e) {
+    return e instanceof Err ? e : new Err(e);
   }
 };
+
+Result.promise = promise => promise.then(Ok, Err);
 
 Result.prototype = Ctor.prototype;
 

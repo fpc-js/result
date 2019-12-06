@@ -9,7 +9,7 @@ import { Result, Ok, Err } from '../src';
  */
 
 test('Result(0) throws an error', () =>
-  expect(() => Result(0)).toThrow('Expected function or promise, got number')
+  expect(() => Result(0)).toThrow('Expected function, got number')
 );
 
 test('Result(fn) returns an `Ok` instance by default', () => {
@@ -26,26 +26,26 @@ test('Result(errFn) returns an `Err` instance', () => {
   expect(res).toBeInstanceOf(Err);
 });
 
-test('Result(Promise.resolve()) returns an `Ok` instance in a Promise', () => {
-  const prom = Result(Promise.resolve('Ok'));
+test('Result.promise(Promise.resolve()) makes an `Ok` instance', () => {
+  const prom = Result.promise(Promise.resolve('Ok'));
 
   return prom.then(res => expect(res).toBeInstanceOf(Result));
 });
 
-test('Result(Promise.reject()) returns an `Err` instance in a Promise', () => {
-  const prom = Result(Promise.reject('Oh no!'));
+test('Result.promise(Promise.reject()) makes an `Err` instance', () => {
+  const prom = Result.promise(Promise.reject('Oh no!'));
 
   return prom.then(res => expect(res).toBeInstanceOf(Result));
 });
 
-test('Result(succPromise) wraps the value correctly', () => {
-  const prom = Result(Promise.resolve('Ok'));
+test('Result.promise(succPromise) wraps the value correctly', () => {
+  const prom = Result.promise(Promise.resolve('Ok'));
 
   return prom.then(res => expect(res.get()).toBe('Ok'));
 });
 
-test('Result(errPromise) wraps the value correctly', () => {
-  const prom = Result(Promise.reject('Oh no!'));
+test('Result.promise(errPromise) wraps the value correctly', () => {
+  const prom = Result.promise(Promise.reject('Oh no!'));
 
   return prom.then(res => expect(res.getErr()).toBe('Oh no!'));
 });
