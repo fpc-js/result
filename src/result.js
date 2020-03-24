@@ -1,4 +1,4 @@
-import { expectFunction } from '@fpc/types';
+import { expectFunction, expectPromise } from '@fpc/types';
 
 /* global Symbol */
 /* eslint-disable func-style, no-use-before-define, no-sequences */
@@ -60,7 +60,7 @@ export const Result = (fn, ...args) => {
   }
 };
 
-Result.promise = promise => promise.then(Ok, Err);
+Result.promise = promise => expectPromise(promise).then(Ok, Err);
 
 Result.prototype = Ctor.prototype;
 
