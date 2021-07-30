@@ -1,4 +1,4 @@
-import { Result, Ok, Err } from '../src';
+import { Result, Ok, Err } from '../src/index.js';
 
 const ok0 = Ok(0);
 
