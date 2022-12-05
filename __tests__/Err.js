@@ -1,4 +1,5 @@
 import { Result, Ok, Err } from '../src/index.js';
+import { jest } from '@jest/globals';
 
 const err1 = Err(1);
 
